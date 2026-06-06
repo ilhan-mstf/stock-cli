@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"stock-cli/pkg/config"
-	"stock-cli/pkg/finnhub"
+	"stock/pkg/config"
+	"stock/pkg/finnhub"
 	"strings"
 
 	"github.com/spf13/cobra"

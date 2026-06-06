@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"stock-cli/pkg/config"
-	"stock-cli/pkg/finnhub"
-	"stock-cli/pkg/technical"
+	"stock/pkg/config"
+	"stock/pkg/finnhub"
+	"stock/pkg/technical"
 	"strings"
 	"time"
 

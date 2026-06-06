@@ -1,6 +1,6 @@
 # Compiled binaries
-stock
-stock.exe
+/stock
+/stock.exe
 *.exe
 
 # Local configs (to protect API tokens/watchlists)

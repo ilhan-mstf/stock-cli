@@ -1,6 +1,6 @@
 package main
 
-import "stock-cli/cmd"
+import "stock/cmd"
 
 func main() {
 	cmd.Execute()

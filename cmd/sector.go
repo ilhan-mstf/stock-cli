@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"os"
 	"sort"
-	"stock-cli/pkg/config"
-	"stock-cli/pkg/finnhub"
+	"stock/pkg/config"
+	"stock/pkg/finnhub"
 	"strings"
 
 	"github.com/spf13/cobra"

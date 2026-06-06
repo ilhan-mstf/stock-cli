@@ -1,4 +1,4 @@
-module stock-cli
+module stock
 
 go 1.24.4
 

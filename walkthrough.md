@@ -4,7 +4,7 @@ This document summarizes the changes, test status, and manual validation steps f
 
 ## Changes Made
 
-1.  **Project Initialization**: Created Go module `stock-cli` and fetched Cobra dependencies.
+1.  **Project Initialization**: Created Go module `stock` and fetched Cobra dependencies.
 2.  **Configuration Helper (`pkg/config`)**:
     - Created configuration structures for API key storage and watchlists.
     - Implemented cross-platform standard config directory lookup via `os.UserConfigDir()`.
@@ -51,7 +51,7 @@ $ go test -race -cover -v ./...
 === RUN   TestLoadCorruptedConfig
 --- PASS: TestLoadCorruptedConfig (0.00s)
 PASS
-ok  	stock-cli/pkg/config	1.558s	coverage: 69.2% of statements
+ok  	stock/pkg/config	1.558s	coverage: 69.2% of statements
 
 === RUN   TestFetchQuote
 --- PASS: TestFetchQuote (0.01s)
@@ -66,14 +66,14 @@ ok  	stock-cli/pkg/config	1.558s	coverage: 69.2% of statements
 === RUN   TestFetchInsiderTransactions
 --- PASS: TestFetchInsiderTransactions (0.00s)
 PASS
-ok  	stock-cli/pkg/finnhub	1.996s	coverage: 77.9% of statements
+ok  	stock/pkg/finnhub	1.996s	coverage: 77.9% of statements
 
 === RUN   TestCalculateSMA
 --- PASS: TestCalculateSMA (0.00s)
 === RUN   TestCalculateRSI
 --- PASS: TestCalculateRSI (0.00s)
 PASS
-ok  	stock-cli/pkg/technical	1.742s	coverage: 100.0% of statements
+ok  	stock/pkg/technical	1.742s	coverage: 100.0% of statements
 ```
 
 ---
@@ -82,44 +82,44 @@ ok  	stock-cli/pkg/technical	1.742s	coverage: 100.0% of statements
 
 Set up the key in your local test config file:
 ```bash
-go run main.go --config test_config.json config set api-key YOUR_FINNHUB_TOKEN
+go run ./cmd/stock --config test_config.json config set api-key YOUR_FINNHUB_TOKEN
 ```
 
 ### 1. Macro Scan
 Query major indexes, bond proxies, and volatility:
 ```bash
-go run main.go --config test_config.json macro
+go run ./cmd/stock --config test_config.json macro
 ```
 
 ### 2. Sector Scan
 Query ranked sector ETF rotators:
 ```bash
-go run main.go --config test_config.json sector
+go run ./cmd/stock --config test_config.json sector
 ```
 
 ### 3. Company Fundamentals
 Scan core company scorecard:
 ```bash
-go run main.go --config test_config.json analyze AAPL
+go run ./cmd/stock --config test_config.json analyze AAPL
 ```
 
 ### 4. Technical Scan
 Scan SMA support and RSI momentum levels:
 ```bash
-go run main.go --config test_config.json technical AAPL
+go run ./cmd/stock --config test_config.json technical AAPL
 ```
 
 ### 5. Insider Trading
 Check executive buying/selling balance:
 ```bash
-go run main.go --config test_config.json insider AAPL
+go run ./cmd/stock --config test_config.json insider AAPL
 ```
 
 ### 6. Combined Market Dashboard
 Show a single top-down market dashboard (Indices + Sector Leaderboard + Watchlist Status):
 ```bash
 # Add some symbols to watchlist first
-go run main.go --config test_config.json watch add AAPL MSFT GOOG
+go run ./cmd/stock --config test_config.json watch add AAPL MSFT GOOG
 # Show dashboard
-go run main.go --config test_config.json dashboard
+go run ./cmd/stock --config test_config.json dashboard
 ```

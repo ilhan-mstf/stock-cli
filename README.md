@@ -1,4 +1,4 @@
-# Stock Market CLI (`stock-cli`)
+# Stock Market CLI (`stock`)
 
 A fast, lightweight, and professional-grade command-line interface written in Go to monitor market indicators, sector rotations, company fundamentals, technical levels, and insider trading using the official **Finnhub API**.
 
@@ -32,11 +32,11 @@ Make sure you have **Go 1.18 or higher** installed.
     ```
 2.  Build the binary:
     ```bash
-    go build -o stock-cli main.go
+    go build -o stock ./cmd/stock
     ```
 3.  Install it to your `$GOPATH/bin`:
     ```bash
-    go install
+    go install ./cmd/stock
     ```
 
 ---
@@ -52,7 +52,7 @@ The CLI checks for the token in the following order of precedence:
     ```
 2.  **Local Configuration File**:
     ```bash
-    stock-cli config set api-key your_api_token_here
+    stock config set api-key your_api_token_here
     ```
     *This saves the token to the cross-platform standard configuration directory (`~/.config/stock-cli/config.json` on Linux/macOS).*
 
@@ -60,46 +60,46 @@ The CLI checks for the token in the following order of precedence:
 
 ## 📖 Command Reference & Examples
 
-### 1. Market Index Scan (`stock-cli macro`)
+### 1. Market Index Scan (`stock macro`)
 Displays major indices (S&P 500, Nasdaq 100, Dow Jones, Russell 2000), volatility index, and bonds:
 ```bash
-stock-cli macro
+stock macro
 ```
 
-### 2. Sector Rotation Performance (`stock-cli sector`)
+### 2. Sector Rotation Performance (`stock sector`)
 Displays the 11 Select Sector SPDR ETFs ranked by daily performance:
 ```bash
-stock-cli sector
+stock sector
 ```
 
-### 3. Company Scorecard (`stock-cli analyze <SYMBOL>`)
+### 3. Company Scorecard (`stock analyze <SYMBOL>`)
 Fetches valuation multiples, returns on capital (ROIC/ROE), revenue growth, and debt health:
 ```bash
-stock-cli analyze TSLA
+stock analyze TSLA
 ```
 
-### 4. Technical Scan (`stock-cli technical <SYMBOL>`)
+### 4. Technical Scan (`stock technical <SYMBOL>`)
 Calculates the current price position relative to moving averages, RSI-14 status, and volume breakout ratio:
 ```bash
-stock-cli technical AAPL
+stock technical AAPL
 ```
 
-### 5. Insider Trading Summary (`stock-cli insider <SYMBOL>`)
+### 5. Insider Trading Summary (`stock insider <SYMBOL>`)
 Analyzes transactions by executives and directors over the last 6 months, rendering summaries and a recent log:
 ```bash
-stock-cli insider MSFT
+stock insider MSFT
 ```
 
-### 6. Watchlist Management (`stock-cli watch`)
-*   **Fetch Watchlist Quotes**: `stock-cli watch`
-*   **Add Symbols**: `stock-cli watch add AAPL GOOG NVDA`
-*   **Remove Symbols**: `stock-cli watch remove AAPL`
-*   **List Symbols**: `stock-cli watch list`
+### 6. Watchlist Management (`stock watch`)
+*   **Fetch Watchlist Quotes**: `stock watch`
+*   **Add Symbols**: `stock watch add AAPL GOOG NVDA`
+*   **Remove Symbols**: `stock watch remove AAPL`
+*   **List Symbols**: `stock watch list`
 
-### 7. Unified Daily Dashboard (`stock-cli dashboard`)
+### 7. Unified Daily Dashboard (`stock dashboard`)
 Deduplicates network calls to fetch macro indices, the top sector rotators, and your watchlist in a single parallel batch request:
 ```bash
-stock-cli dashboard
+stock dashboard
 ```
 
 ---
@@ -110,13 +110,13 @@ Add these flags to any command to customize output behavior:
 
 *   `--json`: Outputs data in structured JSON format instead of terminal tables. Useful for scripting (e.g., piping to `jq`).
     ```bash
-    stock-cli quote AAPL MSFT --json
+    stock quote AAPL MSFT --json
     ```
 *   `--no-color`: Disables color-coded outputs. Useful when redirects are active.
     ```bash
-    stock-cli sector --no-color
+    stock sector --no-color
     ```
 *   `--config <path>`: Overrides the default configuration file location.
     ```bash
-    stock-cli --config ./test_config.json watch list
+    stock --config ./test_config.json watch list
     ```

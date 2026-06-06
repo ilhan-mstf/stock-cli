@@ -3,7 +3,7 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
-	"stock-cli/pkg/config"
+	"stock/pkg/config"
 
 	"github.com/spf13/cobra"
 )
